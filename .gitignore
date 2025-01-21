@@ -1,0 +1,16 @@
+
+Library
+*.sln
+Logs
+*.dwlt
+*.csproj
+.vsconfig
+Temp
+.vs
+.vscode
+obj
+Assets/StreamingAssets/vits-melo-tts-zh_en
+Assets/StreamingAssets/sherpa-onnx-punct-ct-transformer-zh-en-vocab272727-2024-04-12
+Assets/StreamingAssets/sherpa-onnx-streaming-zipformer-bilingual-zh-en-2023-02-20
+Assets/StreamingAssets/build_info
+Assets/StreamingAssets/build_info.meta
