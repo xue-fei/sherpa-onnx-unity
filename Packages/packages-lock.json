@@ -7,6 +7,22 @@
       "dependencies": {},
       "hash": "1d7eba00d497ece18aa5d3cadacaf891ad80ae1a"
     },
+    "com.unity.ext.nunit": {
+      "version": "1.0.6",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.cn"
+    },
+    "com.unity.ide.visualstudio": {
+      "version": "2.0.22",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.test-framework": "1.1.9"
+      },
+      "url": "https://packages.unity.cn"
+    },
     "com.unity.ide.vscode": {
       "version": "1.2.5",
       "depth": 0,
@@ -30,6 +46,17 @@
       },
       "url": "https://packages.unity.cn"
     },
+    "com.unity.test-framework": {
+      "version": "1.1.31",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.ext.nunit": "1.0.6",
+        "com.unity.modules.imgui": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0"
+      },
+      "url": "https://packages.unity.cn"
+    },
     "com.unity.textmeshpro": {
       "version": "3.0.9",
       "depth": 0,
@@ -40,6 +67,16 @@
       "url": "https://packages.unity.cn"
     },
     "com.unity.toolchain.linux-x86_64": {
+      "version": "2.0.10",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.sysroot": "2.0.10",
+        "com.unity.sysroot.linux-x86_64": "2.0.9"
+      },
+      "url": "https://packages.unity.cn"
+    },
+    "com.unity.toolchain.win-x86_64-linux-x86_64": {
       "version": "2.0.10",
       "depth": 0,
       "source": "registry",

@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/SherpaOnnx/Scene/SherpaOnnx.unity
+    guid: 1b34e669d792ae1959d7a1bbd4fc29ec
   m_configObjects: {}
