@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.github.aliessmael.unitylogsviewer": {
+      "version": "https://gitee.com/awnuxcvbn/UnityLogsViewer.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "683019f427fb9c0d11721ea457078a1ec1f801ad"
+    },
     "com.hecomi.umicrophonewebgl": {
       "version": "https://gitee.com/awnuxcvbn/uMicrophoneWebGL.git",
       "depth": 0,
