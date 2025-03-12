@@ -9,7 +9,7 @@ public static class Util
             || Application.platform == RuntimePlatform.LinuxEditor
              || Application.platform == RuntimePlatform.LinuxPlayer)
         {
-            return Util.GetPath();
+            return Application.streamingAssetsPath;
         }
         else if (Application.platform == RuntimePlatform.Android
                   || Application.platform == RuntimePlatform.IPhonePlayer)
@@ -18,7 +18,7 @@ public static class Util
         }
         else
         {
-            return Util.GetPath();
+            return Application.streamingAssetsPath;
         }
     }
 }
