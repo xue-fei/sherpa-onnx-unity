@@ -57,19 +57,19 @@ public class SherpaTextToSpeech : MonoBehaviour
     {
         initDone = false;
         config = new OfflineTtsConfig();
-        config.Model.Vits.Model = Path.Combine(Application.streamingAssetsPath, "vits-melo-tts-zh_en/model.onnx");
-        config.Model.Vits.Lexicon = Path.Combine(Application.streamingAssetsPath, "vits-melo-tts-zh_en/lexicon.txt");
-        config.Model.Vits.Tokens = Path.Combine(Application.streamingAssetsPath, "vits-melo-tts-zh_en/tokens.txt");
-        config.Model.Vits.DictDir = Path.Combine(Application.streamingAssetsPath, "vits-melo-tts-zh_en/dict");
+        config.Model.Vits.Model = Path.Combine(Util.GetPath(), "vits-melo-tts-zh_en/model.onnx");
+        config.Model.Vits.Lexicon = Path.Combine(Util.GetPath(), "vits-melo-tts-zh_en/lexicon.txt");
+        config.Model.Vits.Tokens = Path.Combine(Util.GetPath(), "vits-melo-tts-zh_en/tokens.txt");
+        config.Model.Vits.DictDir = Path.Combine(Util.GetPath(), "vits-melo-tts-zh_en/dict");
         config.Model.Vits.NoiseScale = 0.667f;
         config.Model.Vits.NoiseScaleW = 0.8f;
         config.Model.Vits.LengthScale = 1f;
         config.Model.NumThreads = 5;
         config.Model.Debug = 1;
         config.Model.Provider = "gpu";
-        config.RuleFsts = Application.streamingAssetsPath + "/vits-melo-tts-zh_en/phone.fst" + ","
-                    + Application.streamingAssetsPath + "/vits-melo-tts-zh_en/date.fst" + ","
-                + Application.streamingAssetsPath + "/vits-melo-tts-zh_en/number.fst";
+        config.RuleFsts = Util.GetPath() + "/vits-melo-tts-zh_en/phone.fst" + ","
+                    + Util.GetPath() + "/vits-melo-tts-zh_en/date.fst" + ","
+                + Util.GetPath() + "/vits-melo-tts-zh_en/number.fst";
         config.MaxNumSentences = 1;
         ot = new OfflineTts(config);
         SampleRate = ot.SampleRate;

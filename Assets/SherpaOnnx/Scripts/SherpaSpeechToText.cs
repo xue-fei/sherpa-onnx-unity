@@ -39,7 +39,7 @@ public class SherpaSpeechToText : MonoBehaviour
 
     void Init()
     {
-        modelPath = Application.streamingAssetsPath + "/sherpa-onnx-streaming-zipformer-bilingual-zh-en-2023-02-20";
+         modelPath = Util.GetPath() + "/sherpa-onnx-streaming-zipformer-bilingual-zh-en-2023-02-20"; 
         // 初始化配置
         OnlineRecognizerConfig config = new OnlineRecognizerConfig();
         config.FeatConfig.SampleRate = sampleRate;
@@ -60,7 +60,7 @@ public class SherpaSpeechToText : MonoBehaviour
         OfflinePunctuationConfig opc = new OfflinePunctuationConfig();
 
         OfflinePunctuationModelConfig opmc = new OfflinePunctuationModelConfig();
-        opmc.CtTransformer = Application.streamingAssetsPath + "/sherpa-onnx-punct-ct-transformer-zh-en-vocab272727-2024-04-12/model.onnx";
+        opmc.CtTransformer = Util.GetPath() + "/sherpa-onnx-punct-ct-transformer-zh-en-vocab272727-2024-04-12/model.onnx";
         opmc.NumThreads = numThreads;
         opmc.Provider = "cpu";
         opmc.Debug = 0;
@@ -73,7 +73,7 @@ public class SherpaSpeechToText : MonoBehaviour
         VadModelConfig vadModelConfig = new VadModelConfig();
 
         SileroVadModelConfig SileroVad = new SileroVadModelConfig();
-        SileroVad.Model = Application.streamingAssetsPath + "/silero_vad.onnx";
+        SileroVad.Model = Util.GetPath() + "/silero_vad.onnx";
         SileroVad.MinSilenceDuration = 0.25f;
         SileroVad.MinSpeechDuration = 0.5f;
         SileroVad.Threshold = 0.5f;
