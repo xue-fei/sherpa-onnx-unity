@@ -16,3 +16,4 @@ https://github.com/aliessmael/Unity-Logs-Viewer
 2025.3.13 Unity build Android OK   
 Need copy models files to Android\data\packageName\files\   
 like 此电脑\Xiaomi 12\内部存储设备\Android\data\com.k2fsa.sherpa.onnx\files   
+![screenshot](https://github.com/xue-fei/sherpa-onnx-unity/blob/main/image_20250313210938.jpg)
