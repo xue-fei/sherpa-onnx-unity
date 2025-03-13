@@ -73,36 +73,36 @@ public class VoiceActivityDetector : IDisposable
 		_handle = new HandleRef(this, IntPtr.Zero);
 	}
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern IntPtr SherpaOnnxCreateVoiceActivityDetector(ref VadModelConfig config, float bufferSizeInSeconds);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern void SherpaOnnxDestroyVoiceActivityDetector(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern void SherpaOnnxVoiceActivityDetectorAcceptWaveform(IntPtr handle, float[] samples, int n);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern int SherpaOnnxVoiceActivityDetectorEmpty(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern int SherpaOnnxVoiceActivityDetectorDetected(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern void SherpaOnnxVoiceActivityDetectorPop(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern void SherpaOnnxVoiceActivityDetectorClear(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern IntPtr SherpaOnnxVoiceActivityDetectorFront(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern void SherpaOnnxDestroySpeechSegment(IntPtr segment);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern void SherpaOnnxVoiceActivityDetectorReset(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern void SherpaOnnxVoiceActivityDetectorFlush(IntPtr handle);
 }

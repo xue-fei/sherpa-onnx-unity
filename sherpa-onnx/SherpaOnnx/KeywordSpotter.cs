@@ -80,33 +80,33 @@ public class KeywordSpotter : IDisposable
 		_handle = new HandleRef(this, IntPtr.Zero);
 	}
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern IntPtr SherpaOnnxCreateKeywordSpotter(ref KeywordSpotterConfig config);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern void SherpaOnnxDestroyKeywordSpotter(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern IntPtr SherpaOnnxCreateKeywordStream(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern IntPtr SherpaOnnxCreateKeywordStreamWithKeywords(IntPtr handle, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I1)] byte[] utf8Keywords);
 
-	[DllImport("sherpa-onnx-c-api", EntryPoint = "SherpaOnnxIsKeywordStreamReady")]
+	[DllImport(Dll.Filename, EntryPoint = "SherpaOnnxIsKeywordStreamReady")]
 	private static extern int IsReady(IntPtr handle, IntPtr stream);
 
-	[DllImport("sherpa-onnx-c-api", EntryPoint = "SherpaOnnxDecodeKeywordStream")]
+	[DllImport(Dll.Filename, EntryPoint = "SherpaOnnxDecodeKeywordStream")]
 	private static extern void Decode(IntPtr handle, IntPtr stream);
 
-	[DllImport("sherpa-onnx-c-api", EntryPoint = "SherpaOnnxResetKeywordStream")]
+	[DllImport(Dll.Filename, EntryPoint = "SherpaOnnxResetKeywordStream")]
 	private static extern void Reset(IntPtr handle, IntPtr stream);
 
-	[DllImport("sherpa-onnx-c-api", EntryPoint = "SherpaOnnxDecodeMultipleKeywordStreams")]
+	[DllImport(Dll.Filename, EntryPoint = "SherpaOnnxDecodeMultipleKeywordStreams")]
 	private static extern void Decode(IntPtr handle, IntPtr[] streams, int n);
 
-	[DllImport("sherpa-onnx-c-api", EntryPoint = "SherpaOnnxGetKeywordResult")]
+	[DllImport(Dll.Filename, EntryPoint = "SherpaOnnxGetKeywordResult")]
 	private static extern IntPtr GetResult(IntPtr handle, IntPtr stream);
 
-	[DllImport("sherpa-onnx-c-api", EntryPoint = "SherpaOnnxDestroyKeywordResult")]
+	[DllImport(Dll.Filename, EntryPoint = "SherpaOnnxDestroyKeywordResult")]
 	private static extern void DestroyResult(IntPtr result);
 }

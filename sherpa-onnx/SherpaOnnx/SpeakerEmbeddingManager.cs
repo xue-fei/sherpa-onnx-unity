@@ -140,39 +140,39 @@ public class SpeakerEmbeddingManager : IDisposable
 		_handle = new HandleRef(this, IntPtr.Zero);
 	}
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern IntPtr SherpaOnnxCreateSpeakerEmbeddingManager(int dim);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern void SherpaOnnxDestroySpeakerEmbeddingManager(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern int SherpaOnnxSpeakerEmbeddingManagerAdd(IntPtr handle, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I1)] byte[] utf8Name, float[] v);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern int SherpaOnnxSpeakerEmbeddingManagerAddListFlattened(IntPtr handle, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I1)] byte[] utf8Name, float[] v, int n);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern int SherpaOnnxSpeakerEmbeddingManagerRemove(IntPtr handle, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I1)] byte[] utf8Name);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern IntPtr SherpaOnnxSpeakerEmbeddingManagerSearch(IntPtr handle, float[] v, float threshold);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern void SherpaOnnxSpeakerEmbeddingManagerFreeSearch(IntPtr p);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern int SherpaOnnxSpeakerEmbeddingManagerVerify(IntPtr handle, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I1)] byte[] utf8Name, float[] v, float threshold);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern int SherpaOnnxSpeakerEmbeddingManagerContains(IntPtr handle, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I1)] byte[] utf8Name);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern int SherpaOnnxSpeakerEmbeddingManagerNumSpeakers(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern IntPtr SherpaOnnxSpeakerEmbeddingManagerGetAllSpeakers(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern void SherpaOnnxSpeakerEmbeddingManagerFreeAllSpeakers(IntPtr names);
 }

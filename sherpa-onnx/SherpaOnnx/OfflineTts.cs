@@ -62,24 +62,24 @@ public class OfflineTts : IDisposable
 		_handle = new HandleRef(this, IntPtr.Zero);
 	}
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern IntPtr SherpaOnnxCreateOfflineTts(ref OfflineTtsConfig config);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern void SherpaOnnxDestroyOfflineTts(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern int SherpaOnnxOfflineTtsSampleRate(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern int SherpaOnnxOfflineTtsNumSpeakers(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern IntPtr SherpaOnnxOfflineTtsGenerate(IntPtr handle, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I1)] byte[] utf8Text, int sid, float speed);
 
-	[DllImport("sherpa-onnx-c-api", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(Dll.Filename, CallingConvention = CallingConvention.Cdecl)]
 	private static extern IntPtr SherpaOnnxOfflineTtsGenerateWithCallback(IntPtr handle, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I1)] byte[] utf8Text, int sid, float speed, OfflineTtsCallback callback);
 
-	[DllImport("sherpa-onnx-c-api", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(Dll.Filename, CallingConvention = CallingConvention.Cdecl)]
 	private static extern IntPtr SherpaOnnxOfflineTtsGenerateWithProgressCallback(IntPtr handle, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I1)] byte[] utf8Text, int sid, float speed, OfflineTtsCallbackProgress callback);
 }

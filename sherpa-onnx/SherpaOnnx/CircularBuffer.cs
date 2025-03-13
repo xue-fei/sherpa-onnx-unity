@@ -58,30 +58,30 @@ public class CircularBuffer : IDisposable
 		_handle = new HandleRef(this, IntPtr.Zero);
 	}
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern IntPtr SherpaOnnxCreateCircularBuffer(int capacity);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern void SherpaOnnxDestroyCircularBuffer(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern void SherpaOnnxCircularBufferPush(IntPtr handle, float[] p, int n);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern IntPtr SherpaOnnxCircularBufferGet(IntPtr handle, int startIndex, int n);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern void SherpaOnnxCircularBufferFree(IntPtr p);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern void SherpaOnnxCircularBufferPop(IntPtr handle, int n);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern int SherpaOnnxCircularBufferSize(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern int SherpaOnnxCircularBufferHead(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern void SherpaOnnxCircularBufferReset(IntPtr handle);
 }

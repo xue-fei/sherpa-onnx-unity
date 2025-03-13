@@ -75,33 +75,33 @@ public class OnlineRecognizer : IDisposable
 		_handle = new HandleRef(this, IntPtr.Zero);
 	}
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern IntPtr SherpaOnnxCreateOnlineRecognizer(ref OnlineRecognizerConfig config);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern void SherpaOnnxDestroyOnlineRecognizer(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern IntPtr SherpaOnnxCreateOnlineStream(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api", EntryPoint = "SherpaOnnxIsOnlineStreamReady")]
+	[DllImport(Dll.Filename, EntryPoint = "SherpaOnnxIsOnlineStreamReady")]
 	private static extern int IsReady(IntPtr handle, IntPtr stream);
 
-	[DllImport("sherpa-onnx-c-api", EntryPoint = "SherpaOnnxDecodeOnlineStream")]
+	[DllImport(Dll.Filename, EntryPoint = "SherpaOnnxDecodeOnlineStream")]
 	private static extern void Decode(IntPtr handle, IntPtr stream);
 
-	[DllImport("sherpa-onnx-c-api", EntryPoint = "SherpaOnnxDecodeMultipleOnlineStreams")]
+	[DllImport(Dll.Filename, EntryPoint = "SherpaOnnxDecodeMultipleOnlineStreams")]
 	private static extern void Decode(IntPtr handle, IntPtr[] streams, int n);
 
-	[DllImport("sherpa-onnx-c-api", EntryPoint = "SherpaOnnxGetOnlineStreamResult")]
+	[DllImport(Dll.Filename, EntryPoint = "SherpaOnnxGetOnlineStreamResult")]
 	private static extern IntPtr GetResult(IntPtr handle, IntPtr stream);
 
-	[DllImport("sherpa-onnx-c-api", EntryPoint = "SherpaOnnxDestroyOnlineRecognizerResult")]
+	[DllImport(Dll.Filename, EntryPoint = "SherpaOnnxDestroyOnlineRecognizerResult")]
 	private static extern void DestroyResult(IntPtr result);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern void SherpaOnnxOnlineStreamReset(IntPtr handle, IntPtr stream);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern int SherpaOnnxOnlineStreamIsEndpoint(IntPtr handle, IntPtr stream);
 }

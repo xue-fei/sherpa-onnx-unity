@@ -52,18 +52,18 @@ public class OfflineRecognizer : IDisposable
 		_handle = new HandleRef(this, IntPtr.Zero);
 	}
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern IntPtr SherpaOnnxCreateOfflineRecognizer(ref OfflineRecognizerConfig config);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern void SherpaOnnxDestroyOfflineRecognizer(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern IntPtr SherpaOnnxCreateOfflineStream(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api", EntryPoint = "SherpaOnnxDecodeOfflineStream")]
+	[DllImport(Dll.Filename, EntryPoint = "SherpaOnnxDecodeOfflineStream")]
 	private static extern void Decode(IntPtr handle, IntPtr stream);
 
-	[DllImport("sherpa-onnx-c-api", EntryPoint = "SherpaOnnxDecodeMultipleOfflineStreams")]
+	[DllImport(Dll.Filename, EntryPoint = "SherpaOnnxDecodeMultipleOfflineStreams")]
 	private static extern void Decode(IntPtr handle, IntPtr[] streams, int n);
 }

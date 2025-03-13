@@ -1,9 +1,7 @@
 
 Library
-*.sln
 Logs
 *.dwlt
-*.csproj
 .vsconfig
 Temp
 .vs
@@ -15,3 +13,7 @@ Assets/StreamingAssets/sherpa-onnx-streaming-zipformer-bilingual-zh-en-2023-02-2
 Assets/StreamingAssets/build_info
 Assets/StreamingAssets/build_info.meta
 Assets/StreamingAssets/silero_vad.onnx
+sherpa-onnx/.vs
+sherpa-onnx/bin
+sherpa-onnx/obj
+Assembly-CSharp.csproj

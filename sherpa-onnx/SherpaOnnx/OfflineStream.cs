@@ -47,15 +47,15 @@ public class OfflineStream : IDisposable
 		_handle = new HandleRef(this, IntPtr.Zero);
 	}
 
-	[DllImport("sherpa-onnx-c-api")]
+	[DllImport(Dll.Filename)]
 	private static extern void SherpaOnnxDestroyOfflineStream(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api", EntryPoint = "SherpaOnnxAcceptWaveformOffline")]
+	[DllImport(Dll.Filename, EntryPoint = "SherpaOnnxAcceptWaveformOffline")]
 	private static extern void AcceptWaveform(IntPtr handle, int sampleRate, float[] samples, int n);
 
-	[DllImport("sherpa-onnx-c-api", EntryPoint = "SherpaOnnxGetOfflineStreamResult")]
+	[DllImport(Dll.Filename, EntryPoint = "SherpaOnnxGetOfflineStreamResult")]
 	private static extern IntPtr GetResult(IntPtr handle);
 
-	[DllImport("sherpa-onnx-c-api", EntryPoint = "SherpaOnnxDestroyOfflineRecognizerResult")]
+	[DllImport(Dll.Filename, EntryPoint = "SherpaOnnxDestroyOfflineRecognizerResult")]
 	private static extern void DestroyResult(IntPtr handle);
 }
