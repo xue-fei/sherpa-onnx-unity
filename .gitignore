@@ -18,3 +18,7 @@ sherpa-onnx/bin
 sherpa-onnx/obj
 Assembly-CSharp.csproj
 sherpa-onnx-unity.sln
+Assets/StreamingAssets/sherpa-onnx-kws-zipformer-wenetspeech-3.3M-2024-01-01
+Assets/StreamingAssets/sherpa-onnx-paraformer-zh-small-2024-03-09
+Assets/StreamingAssets/gtcrn_simple.onnx
+*.csproj
