@@ -7,10 +7,14 @@ https://github.com/k2-fsa/sherpa-onnx/releases/download/punctuation-models/sherp
 sherpa-onnx-streaming-zipformer-bilingual-zh-en-2023-02-20   
 https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-streaming-zipformer-bilingual-zh-en-2023-02-20.tar.bz2  
 vits-melo-tts-zh_en   
-https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-melo-tts-zh_en.tar.bz2  
-2. recorder    
+https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-melo-tts-zh_en.tar.bz2   
+sherpa-onnx-paraformer-zh-small-2024-03-09   
+https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-paraformer-zh-small-2024-03-09.tar.bz2    
+gtcrn_simple.onnx   
+https://github.com/k2-fsa/sherpa-onnx/releases/download/speech-enhancement-models/gtcrn_simple.onnx   
+3. recorder    
 https://github.com/hecomi/uMicrophoneWebGL   
-3. Unity-Logs-Viewer   
+4. Unity-Logs-Viewer   
 https://github.com/aliessmael/Unity-Logs-Viewer   
 
 2025.3.13 Unity build Android OK   
