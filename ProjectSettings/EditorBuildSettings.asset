@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/SherpaOnnx/Scene/SherpaOnnx.unity
     guid: 1b34e669d792ae1959d7a1bbd4fc29ec
+  - enabled: 1
+    path: Assets/SherpaOnnx/Scene/SampleOnlineRecognizer.unity
+    guid: e4ff39af8182494409745cb0b0d4e7ae
   m_configObjects: {}

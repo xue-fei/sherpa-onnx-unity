@@ -54,7 +54,10 @@ public class SampleOfflineRecognizer : MonoBehaviour
         microphone.isAutoStart = false;
         microphone.dataEvent.AddListener(OnData);
 
-        Init();
+        Loom.RunAsync(() =>
+        {
+            Init();
+        });
     }
 
     void Init()
