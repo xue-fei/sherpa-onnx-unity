@@ -12,9 +12,9 @@ public class SampleOnlineRecognizer : MonoBehaviour
     OnlineStream onlineStream = null;
 
     string tokensPath = "tokens.txt";
-    string encoder = "encoder-epoch-75-avg-11-chunk-16-left-128.int8.onnx";
-    string decoder = "decoder-epoch-75-avg-11-chunk-16-left-128.onnx";
-    string joiner = "joiner-epoch-75-avg-11-chunk-16-left-128.int8.onnx";
+    string encoder = "encoder-epoch-99-avg-1.onnx";
+    string decoder = "decoder-epoch-99-avg-1.onnx";
+    string joiner = "joiner-epoch-99-avg-1.onnx";
     int numThreads = 1;
     string decodingMethod = "modified_beam_search";
 
@@ -44,7 +44,7 @@ public class SampleOnlineRecognizer : MonoBehaviour
 
     void Init()
     {
-        modelPath = pathRoot + "/sherpa-onnx-streaming-zipformer-ar_en_id_ja_ru_th_vi_zh-2025-02-10";
+        modelPath = pathRoot + "/sherpa-onnx-streaming-zipformer-bilingual-zh-en-2023-02-20";
         if (!Directory.Exists(modelPath))
         {
             Directory.CreateDirectory(modelPath);
