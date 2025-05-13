@@ -29,6 +29,8 @@ public class SampleOnlineRecognizer : MonoBehaviour
 
     public InputField inputField;
 
+    public Keyword keyword;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -95,6 +97,12 @@ public class SampleOnlineRecognizer : MonoBehaviour
         vadModelConfig.Debug = 0;
 
         vad = new VoiceActivityDetector(vadModelConfig, 60);
+
+        if (keyword != null)
+        {
+            keyword.Init();
+        }
+
         initDone = true;
         Loom.QueueOnMainThread(() =>
         {
@@ -110,6 +118,12 @@ public class SampleOnlineRecognizer : MonoBehaviour
         {
             return;
         }
+
+        if (keyword != null)
+        {
+            keyword.AcceptData(data);
+        }
+         
         //vad.AcceptWaveform(data);
         //if (vad.IsSpeechDetected())
         //{
@@ -127,7 +141,7 @@ public class SampleOnlineRecognizer : MonoBehaviour
     void Update()
     {
         if (initDone)
-        {
+        { 
             // 每帧更新识别器状态
             if (recognizer.IsReady(onlineStream))
             {
@@ -156,12 +170,16 @@ public class SampleOnlineRecognizer : MonoBehaviour
             {
                 if (!string.IsNullOrWhiteSpace(text))
                 {
+                    if (keyword != null)
+                    {
+                        keyword.Recognize();
+                    }
                     Debug.Log(text.ToLower());
                     //Debug.Log(offlinePunctuation.AddPunct(text.ToLower()));
                     inputField.text = text.ToLower() + "\n";
                 }
                 recognizer.Reset(onlineStream);
-            }
+            } 
         }
     }
 
