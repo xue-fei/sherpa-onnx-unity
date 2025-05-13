@@ -1,0 +1,5 @@
+C:\Users\XUEFEI\.nuget\packages\org.k2fsa.sherpa.onnx\1.11.5\lib\netstandard2.0\sherpa-onnx.dll
+C:\Users\XUEFEI\.nuget\packages\org.k2fsa.sherpa.onnx.runtime.win-x64\1.11.5\runtimes\win-x64\native\onnxruntime.dll
+C:\Users\XUEFEI\.nuget\packages\org.k2fsa.sherpa.onnx.runtime.win-x64\1.11.5\runtimes\win-x64\native\sherpa-onnx-c-api.dll
+C:\Users\XUEFEI\.nuget\packages\org.k2fsa.sherpa.onnx.runtime.linux-x64\1.11.5\runtimes\linux-x64\native\libonnxruntime.so
+C:\Users\XUEFEI\.nuget\packages\org.k2fsa.sherpa.onnx.runtime.linux-x64\1.11.5\runtimes\linux-x64\native\libsherpa-onnx-c-api.so
