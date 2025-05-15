@@ -101,17 +101,8 @@ public class SherpaSpeechToText : MonoBehaviour
         if (!initDone)
         {
             return;
-        }
-        //vad.AcceptWaveform(data);
-        //if (vad.IsSpeechDetected())
-        //{
-        // 将采集到的音频数据传递给识别器
-        onlineStream.AcceptWaveform(sampleRate, data);
-        //}
-        //else
-        //{
-        //Console.Write(" 无人语我 ");
-        //}
+        } 
+        onlineStream.AcceptWaveform(sampleRate, data); 
     }
 
     string lastText = "";

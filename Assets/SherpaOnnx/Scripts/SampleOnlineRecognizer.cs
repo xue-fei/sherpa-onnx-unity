@@ -1,4 +1,5 @@
 using SherpaOnnx;
+using System.Collections.Generic;
 using System.IO;
 using uMicrophoneWebGL;
 using UnityEngine;
@@ -30,6 +31,7 @@ public class SampleOnlineRecognizer : MonoBehaviour
     public InputField inputField;
 
     public Keyword keyword;
+    public SpeakerIdentification speakerIdentification;
 
     // Start is called before the first frame update
     void Start()
@@ -102,7 +104,10 @@ public class SampleOnlineRecognizer : MonoBehaviour
         {
             keyword.Init();
         }
-
+        if(speakerIdentification!=null)
+        {
+            speakerIdentification.Init();
+        }
         initDone = true;
         Loom.QueueOnMainThread(() =>
         {
@@ -111,7 +116,7 @@ public class SampleOnlineRecognizer : MonoBehaviour
         });
         #endregion
     }
-
+     
     public void OnAudioData(float[] data)
     {
         if (!initDone)
@@ -123,17 +128,12 @@ public class SampleOnlineRecognizer : MonoBehaviour
         {
             keyword.AcceptData(data);
         }
-         
-        //vad.AcceptWaveform(data);
-        //if (vad.IsSpeechDetected())
-        //{
-        // 将采集到的音频数据传递给识别器
+
+        if (speakerIdentification != null)
+        {
+            speakerIdentification.AcceptData(data);
+        }
         onlineStream.AcceptWaveform(sampleRate, data);
-        //}
-        //else
-        //{
-        //Console.Write(" 无人语我 ");
-        //}
     }
 
     string lastText = "";
@@ -173,6 +173,11 @@ public class SampleOnlineRecognizer : MonoBehaviour
                     if (keyword != null)
                     {
                         keyword.Recognize();
+                    }
+
+                    if (speakerIdentification != null)
+                    {
+                        speakerIdentification.Verify();
                     }
                     Debug.Log(text.ToLower());
                     //Debug.Log(offlinePunctuation.AddPunct(text.ToLower()));
