@@ -25,16 +25,16 @@ public class SpeakerIdentification : MonoBehaviour
 
     public void Init()
     {
-        //OfflineSpeechDenoiserGtcrnModelConfig osdgmc = new OfflineSpeechDenoiserGtcrnModelConfig();
-        //osdgmc.Model = pathRoot + "/gtcrn_simple.onnx";
-        //OfflineSpeechDenoiserModelConfig osdmc = new OfflineSpeechDenoiserModelConfig();
-        //osdmc.NumThreads = 1;
-        //osdmc.Provider = "cpu";
-        //osdmc.Debug = 0;
-        //osdmc.Gtcrn = osdgmc;
-        //OfflineSpeechDenoiserConfig osdc = new OfflineSpeechDenoiserConfig();
-        //osdc.Model = osdmc;
-        //offlineSpeechDenoiser = new OfflineSpeechDenoiser(osdc);
+        OfflineSpeechDenoiserGtcrnModelConfig osdgmc = new OfflineSpeechDenoiserGtcrnModelConfig();
+        osdgmc.Model = pathRoot + "/gtcrn_simple.onnx";
+        OfflineSpeechDenoiserModelConfig osdmc = new OfflineSpeechDenoiserModelConfig();
+        osdmc.NumThreads = 1;
+        osdmc.Provider = "cpu";
+        osdmc.Debug = 0;
+        osdmc.Gtcrn = osdgmc;
+        OfflineSpeechDenoiserConfig osdc = new OfflineSpeechDenoiserConfig();
+        osdc.Model = osdmc;
+        offlineSpeechDenoiser = new OfflineSpeechDenoiser(osdc);
         //byte[] bytes = File.ReadAllBytes(pathRoot + "/xuefei.wav");
         //float[] data = BytesToFloat(bytes);
         //DenoisedAudio denoisedAudio = offlineSpeechDenoiser.Run(data, 16000);
@@ -60,6 +60,16 @@ public class SpeakerIdentification : MonoBehaviour
         {
             spk1Vec[i] = ComputeEmbedding(extractor, spk1Files[i]);
         }
+
+        // 给注册音频降噪一下
+        //byte[] bytes = File.ReadAllBytes(pathRoot + "/xuefei1.wav");
+        //float[] data = BytesToFloat(bytes);
+        //DenoisedAudio denoisedAudio = offlineSpeechDenoiser.Run(data, 16000);
+        //if (denoisedAudio.SaveToWaveFile(pathRoot + "/xuefei1.wav"))
+        //{
+
+        //}
+
         //注册说话人
         if (!manager.Add("xuefei", spk1Vec))
         {
@@ -105,7 +115,12 @@ public class SpeakerIdentification : MonoBehaviour
 
     public void Search()
     { 
-        string filePath = Application.streamingAssetsPath + "/" + DateTime.Now.ToFileTime().ToString() + ".wav";
+        string filePath = pathRoot + "/" + DateTime.Now.ToFileTime().ToString() + ".wav";
+        //DenoisedAudio denoisedAudio = offlineSpeechDenoiser.Run(audioData.ToArray(), 16000); 
+        //if (denoisedAudio.SaveToWaveFile(filePath))
+        //{
+
+        //}
         Util.SaveClip(1, 16000, audioData.ToArray(), filePath);
         var embedding = ComputeEmbedding(extractor, filePath);
         string name = manager.Search(embedding, threshold);
