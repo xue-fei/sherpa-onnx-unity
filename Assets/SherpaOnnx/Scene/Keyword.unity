@@ -837,3 +837,98 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1757639583
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1757639586}
+  - component: {fileID: 1757639585}
+  - component: {fileID: 1757639584}
+  m_Layer: 0
+  m_Name: Reporter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1757639584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757639583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 774497a0822768846bcd25725d6e16ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1757639585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757639583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2562ddbcb16634b49bab966463c31df5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  show: 0
+  UserData: 
+  fps: 0
+  fpsText: 
+  images:
+    clearImage: {fileID: 2800000, guid: a697fc752e57b4c4abf8dfad5714ab52, type: 3}
+    collapseImage: {fileID: 2800000, guid: 378574011fc23e14dbbfd18079544200, type: 3}
+    clearOnNewSceneImage: {fileID: 2800000, guid: d676be2cf49ce654089ad2714849159a, type: 3}
+    showTimeImage: {fileID: 2800000, guid: e532af986317cb5419d3d16d1d2506d9, type: 3}
+    showSceneImage: {fileID: 2800000, guid: 3166fe5c424a1924381b1ae50a0bd530, type: 3}
+    userImage: {fileID: 2800000, guid: 61e054643ca66d641bcd8361406f403a, type: 3}
+    showMemoryImage: {fileID: 2800000, guid: 88af8339f69144240a0048caf56e98b0, type: 3}
+    softwareImage: {fileID: 2800000, guid: 893987cf85973f64c81e67b7d8f0e132, type: 3}
+    dateImage: {fileID: 2800000, guid: c003cc67aa46dae4380d8dda4f175f2f, type: 3}
+    showFpsImage: {fileID: 2800000, guid: 1c3563bb21a9f9c4895a23c67e122b0b, type: 3}
+    infoImage: {fileID: 2800000, guid: b2cd5ed0660da2b4cac5d28bba95a6b9, type: 3}
+    saveLogsImage: {fileID: 2800000, guid: 0bef488bd1d137b4994704cfa0dcf0af, type: 3}
+    searchImage: {fileID: 2800000, guid: 136f96b93f399234992cf02e4ab74a55, type: 3}
+    copyImage: {fileID: 2800000, guid: a53f94cc2c409a8449185f8f304b14d9, type: 3}
+    copyAllImage: {fileID: 2800000, guid: f3381ae34b84e134ebc731700d991cee, type: 3}
+    closeImage: {fileID: 2800000, guid: 4c544439f6419ea488257a83b9991626, type: 3}
+    buildFromImage: {fileID: 2800000, guid: 471bc2bc52f07be48b60b0d6d5dec216, type: 3}
+    systemInfoImage: {fileID: 2800000, guid: 19c644582919e2a469b877af089b389e, type: 3}
+    graphicsInfoImage: {fileID: 2800000, guid: f727afd6a5257b94191af3b6c400998d, type: 3}
+    backImage: {fileID: 2800000, guid: 5e0cb6e51310707449d7dc335e397448, type: 3}
+    logImage: {fileID: 2800000, guid: 9cf45000e022557418fc3203003310d4, type: 3}
+    warningImage: {fileID: 2800000, guid: 79eef9a4a59bfca4baaf4adfd4e31b98, type: 3}
+    errorImage: {fileID: 2800000, guid: 4e0a1a52a185a7b478f41556ca0333c4, type: 3}
+    barImage: {fileID: 2800000, guid: 8b5c4f3116dc6204cacfdc2bf028f197, type: 3}
+    button_activeImage: {fileID: 2800000, guid: 0769ef4fefeb2e1428578fea5ec53431, type: 3}
+    even_logImage: {fileID: 2800000, guid: 62c48125adf59b8408e09c1df5cbd257, type: 3}
+    odd_logImage: {fileID: 2800000, guid: d5254acb5deae4e45a7b94e3122ca119, type: 3}
+    selectedImage: {fileID: 2800000, guid: da7e55352f7ab914aaf6582a37e05b03, type: 3}
+    reporterScrollerSkin: {fileID: 11400000, guid: 3cb66cf1fe294c64d9e7689d3d3492ad, type: 2}
+  size: {x: 32, y: 32}
+  maxSize: 20
+  numOfCircleToShow: 1
+  Initialized: 0
+--- !u!4 &1757639586
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757639583}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

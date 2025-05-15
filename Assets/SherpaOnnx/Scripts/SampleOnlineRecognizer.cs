@@ -177,7 +177,7 @@ public class SampleOnlineRecognizer : MonoBehaviour
 
                     if (speakerIdentification != null)
                     {
-                        speakerIdentification.Verify();
+                        speakerIdentification.Search();
                     }
                     Debug.Log(text.ToLower());
                     //Debug.Log(offlinePunctuation.AddPunct(text.ToLower()));
