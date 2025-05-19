@@ -150,7 +150,7 @@ public class SherpaTextToSpeech : MonoBehaviour
         return hasData;
     }
 
-    private void OnApplicationQuit()
+    private void OnDestory()
     {
         if (audioSource != null && audioSource.isPlaying)
         {
