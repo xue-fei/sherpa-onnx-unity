@@ -131,49 +131,52 @@ public class SampleOnlineRecognizer : MonoBehaviour
 
         //if (Time.time >= nextCallTime)
         //{
-            // 每帧更新识别器状态
-            if (recognizer.IsReady(onlineStream))
+        // 每帧更新识别器状态
+        if (recognizer.IsReady(onlineStream))
+        {
+            recognizer.Decode(onlineStream);
+        }
+
+        var text = recognizer.GetResult(onlineStream).Text;
+        bool isEndpoint = recognizer.IsEndpoint(onlineStream);
+        if (!string.IsNullOrWhiteSpace(text) && lastText != text)
+        {
+            if (string.IsNullOrWhiteSpace(lastText))
             {
-                recognizer.Decode(onlineStream);
+                lastText = text;
+                Debug.Log(lastText.ToLower());
             }
-
-            var text = recognizer.GetResult(onlineStream).Text;
-            bool isEndpoint = recognizer.IsEndpoint(onlineStream);
-            if (!string.IsNullOrWhiteSpace(text) && lastText != text)
+            else
             {
-                if (string.IsNullOrWhiteSpace(lastText))
-                {
-                    lastText = text;
-                    Debug.Log(lastText.ToLower());
-                }
-                else
-                {
 
-                    Debug.Log(text.Replace(lastText, "").ToLower());
-                    lastText = text;
-                    inputField.text += lastText + "\n";
-                }
+                Debug.Log(text.Replace(lastText, "").ToLower());
+                lastText = text;
+                inputField.text += lastText + "\n";
             }
+        }
 
-            if (isEndpoint)
+        if (isEndpoint)
+        {
+            if (!string.IsNullOrWhiteSpace(text))
             {
-                if (!string.IsNullOrWhiteSpace(text))
+                if (keyword != null)
                 {
-                    if (keyword != null)
+                    keyword.Recognize();
+                }
+
+                if (speakerIdentification != null)
+                {
+                    speakerIdentification.Search((name) =>
                     {
-                        keyword.Recognize();
-                    }
-
-                    if (speakerIdentification != null)
-                    {
-                        speakerIdentification.Search();
-                    }
-                    Debug.Log(text.ToLower());
-                    //Debug.Log(offlinePunctuation.AddPunct(text.ToLower()));
-                    inputField.text = text.ToLower() + "\n";
+                        inputField.text += "speaker: " + name + "\n";
+                    });
                 }
-                recognizer.Reset(onlineStream);
+                Debug.Log(text.ToLower());
+                //Debug.Log(offlinePunctuation.AddPunct(text.ToLower()));
+                inputField.text = text.ToLower() + "\n";
             }
+            recognizer.Reset(onlineStream);
+        }
         //    nextCallTime = Time.time + interval;
         //}
     }

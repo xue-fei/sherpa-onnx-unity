@@ -6,12 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
+    path: Assets/SherpaOnnx/Scene/Menu.unity
+    guid: 87081c33725ff8e42a58498cd922b030
+  - enabled: 0
     path: Assets/SherpaOnnx/Scene/SherpaOnnx.unity
     guid: 1b34e669d792ae1959d7a1bbd4fc29ec
   - enabled: 0
     path: Assets/SherpaOnnx/Scene/SampleOnlineRecognizer.unity
     guid: e4ff39af8182494409745cb0b0d4e7ae
-  - enabled: 1
+  - enabled: 0
     path: Assets/SherpaOnnx/Scene/Keyword.unity
     guid: e9425ae7ff916e048887ebadde502c76
+  - enabled: 0
+    path: Assets/SherpaOnnx/Scene/SampleOfflineRecognizer.unity
+    guid: b437223b9ee3d994bb22449bc204e583
   m_configObjects: {}

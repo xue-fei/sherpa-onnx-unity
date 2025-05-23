@@ -14,7 +14,7 @@ public class SpeakerIdentification : MonoBehaviour
     OfflineSpeechDenoiser offlineSpeechDenoiser = null;
 
     string[] testFiles;
-     
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +24,7 @@ public class SpeakerIdentification : MonoBehaviour
     }
 
     public void Init()
-    { 
+    {
         OfflineSpeechDenoiserGtcrnModelConfig osdgmc = new OfflineSpeechDenoiserGtcrnModelConfig();
         osdgmc.Model = pathRoot + "/gtcrn_simple.onnx";
         OfflineSpeechDenoiserModelConfig osdmc = new OfflineSpeechDenoiserModelConfig();
@@ -52,7 +52,7 @@ public class SpeakerIdentification : MonoBehaviour
 
         var spk1Files =
             new string[] {
-          pathRoot+"/xuefei1.wav",
+          pathRoot+"/audio/xuefei1.wav",
             };
         var spk1Vec = new float[spk1Files.Length][];
 
@@ -85,9 +85,9 @@ public class SpeakerIdentification : MonoBehaviour
         //验证测试
         testFiles =
         new string[] {
-          pathRoot+"/test1.wav",
-          pathRoot+"/test2.wav",
-          pathRoot+"/test3.wav",
+          pathRoot+"/audio/test1.wav",
+          pathRoot+"/audio/test2.wav",
+          pathRoot+"/audio/test3.wav",
         };
         float threshold = 0.6f;
         foreach (var file in testFiles)
@@ -113,7 +113,7 @@ public class SpeakerIdentification : MonoBehaviour
 
     float threshold = 0.6f;
 
-    public void Search()
+    public void Search(Action<string> callback)
     {
         Loom.RunAsync(() =>
         {
@@ -129,12 +129,13 @@ public class SpeakerIdentification : MonoBehaviour
             if (name == "")
             {
                 name = "<Unknown>";
-            }
+            } 
+            audioData.Clear();
             Loom.QueueOnMainThread(() =>
             {
                 Debug.Log("name:" + name);
+                callback?.Invoke(name);
             });
-            audioData.Clear();
         });
     }
 
