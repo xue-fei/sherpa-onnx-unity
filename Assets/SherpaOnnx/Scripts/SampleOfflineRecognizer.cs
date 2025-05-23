@@ -62,7 +62,7 @@ public class SampleOfflineRecognizer : MonoBehaviour
 
     void Init()
     {
-        pathRoot = Util.GetPath();
+        pathRoot = Util.GetPath() + "/models";
         modelPath = pathRoot + "/sherpa-onnx-paraformer-zh-small-2024-03-09";
         OfflineRecognizerConfig config = new OfflineRecognizerConfig();
         config.FeatConfig.SampleRate = sampleRate;

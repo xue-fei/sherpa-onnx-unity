@@ -14,17 +14,17 @@ public class SpeakerIdentification : MonoBehaviour
     OfflineSpeechDenoiser offlineSpeechDenoiser = null;
 
     string[] testFiles;
-
+     
     // Start is called before the first frame update
     void Start()
     {
-        pathRoot = Util.GetPath();
-        modelPath = pathRoot + "/3dspeaker_speech_eres2net_base_sv_zh-cn_3dspeaker_16k.onnx";
+        pathRoot = Util.GetPath() + "/models";
+        modelPath = pathRoot + "/3dspeaker_speech_eres2net_base_200k_sv_zh-cn_16k-common.onnx";
 
     }
 
     public void Init()
-    {
+    { 
         OfflineSpeechDenoiserGtcrnModelConfig osdgmc = new OfflineSpeechDenoiserGtcrnModelConfig();
         osdgmc.Model = pathRoot + "/gtcrn_simple.onnx";
         OfflineSpeechDenoiserModelConfig osdmc = new OfflineSpeechDenoiserModelConfig();
@@ -99,7 +99,7 @@ public class SpeakerIdentification : MonoBehaviour
                 name = "<Unknown>";
             }
             Debug.Log(file + " :" + name);
-        } 
+        }
     }
 
     /// <summary>
@@ -114,22 +114,28 @@ public class SpeakerIdentification : MonoBehaviour
     float threshold = 0.6f;
 
     public void Search()
-    { 
-        string filePath = pathRoot + "/" + DateTime.Now.ToFileTime().ToString() + ".wav";
-        //DenoisedAudio denoisedAudio = offlineSpeechDenoiser.Run(audioData.ToArray(), 16000); 
-        //if (denoisedAudio.SaveToWaveFile(filePath))
-        //{
-
-        //}
-        Util.SaveClip(1, 16000, audioData.ToArray(), filePath);
-        var embedding = ComputeEmbedding(extractor, filePath);
-        string name = manager.Search(embedding, threshold);
-        if (name == "")
+    {
+        Loom.RunAsync(() =>
         {
-            name = "<Unknown>";
-        }
-        Debug.Log("name:" + name);
-        audioData.Clear();
+            string filePath = pathRoot + "/" + DateTime.Now.ToFileTime().ToString() + ".wav";
+            DenoisedAudio denoisedAudio = offlineSpeechDenoiser.Run(audioData.ToArray(), 16000);
+            if (denoisedAudio.SaveToWaveFile(filePath))
+            {
+
+            }
+            Util.SaveClip(1, 16000, audioData.ToArray(), filePath);
+            var embedding = ComputeEmbedding(extractor, filePath);
+            string name = manager.Search(embedding, threshold);
+            if (name == "")
+            {
+                name = "<Unknown>";
+            }
+            Loom.QueueOnMainThread(() =>
+            {
+                Debug.Log("name:" + name);
+            });
+            audioData.Clear();
+        });
     }
 
     public float[] ComputeEmbedding(SpeakerEmbeddingExtractor extractor, string filename)

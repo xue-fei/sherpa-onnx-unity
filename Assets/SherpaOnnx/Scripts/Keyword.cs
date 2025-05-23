@@ -15,7 +15,8 @@ public class Keyword : MonoBehaviour
 
     public void Init()
     {
-        pathRoot = Util.GetPath();
+        pathRoot = Util.GetPath() + "/models";
+
         //需要将此文件夹拷贝到exe所在的目录
         modelPath = pathRoot + "/sherpa-onnx-kws-zipformer-wenetspeech-3.3M-2024-01-01";
         KeywordSpotterConfig config = new KeywordSpotterConfig();
@@ -41,7 +42,7 @@ public class Keyword : MonoBehaviour
     }
 
     public string Recognize()
-    { 
+    {
         float[] tailPadding = new float[(int)(sampleRate * 0.3)];
         onlineStream.AcceptWaveform(sampleRate, tailPadding);
         onlineStream.InputFinished();

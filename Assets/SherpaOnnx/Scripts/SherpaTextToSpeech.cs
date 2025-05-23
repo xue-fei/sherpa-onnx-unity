@@ -30,7 +30,7 @@ public class SherpaTextToSpeech : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pathRoot = Util.GetPath();
+        pathRoot = Util.GetPath() + "/models";
         audioSource = GetComponent<AudioSource>();
         Loom.RunAsync(() =>
         {

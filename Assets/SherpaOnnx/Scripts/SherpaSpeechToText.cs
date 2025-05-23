@@ -29,7 +29,7 @@ public class SherpaSpeechToText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pathRoot = Util.GetPath();
+        pathRoot = Util.GetPath() + "/models";
         microphone = GetComponent<MicrophoneWebGL>();
         //microphone.dataEvent = new DataEvent();
         microphone.dataEvent.AddListener(OnAudioData);
