@@ -32,7 +32,7 @@ android {
     aaptOptions {
         noCompress = **BUILTIN_NOCOMPRESS** + unityStreamingAssets.tokenize(', ')
         //ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~"
-		ignoreAssetsPattern = 'sherpa-onnx-punct-ct-transformer-zh-en-vocab272727-2024-04-12:sherpa-onnx-streaming-zipformer-bilingual-zh-en-2023-02-20:vits-melo-tts-zh_en:!silero_vad.onnx:!gtcrn_simple.onnx:sherpa-onnx-paraformer-zh-small-2024-03-09:sherpa-onnx-kws-zipformer-wenetspeech-3.3M-2024-01-01:sherpa-onnx-streaming-zipformer-ar_en_id_ja_ru_th_vi_zh-2025-02-10'
+		ignoreAssetsPattern = 'models'
     }**PACKAGING_OPTIONS**
 }**REPOSITORIES**
 **IL_CPP_BUILD_SETUP**
