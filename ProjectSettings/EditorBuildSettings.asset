@@ -5,19 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/SherpaOnnx/Scene/Menu.unity
     guid: 87081c33725ff8e42a58498cd922b030
-  - enabled: 0
-    path: Assets/SherpaOnnx/Scene/SherpaOnnx.unity
+  - enabled: 1
+    path: Assets/SherpaOnnx/Scene/SpeechSynthesis.unity
     guid: 1b34e669d792ae1959d7a1bbd4fc29ec
   - enabled: 0
-    path: Assets/SherpaOnnx/Scene/SampleOnlineRecognizer.unity
+    path: Assets/SherpaOnnx/Scene/SpeechRecognitionOnline.unity
     guid: e4ff39af8182494409745cb0b0d4e7ae
   - enabled: 0
-    path: Assets/SherpaOnnx/Scene/Keyword.unity
+    path: Assets/SherpaOnnx/Scene/KeywordSpotting.unity
     guid: e9425ae7ff916e048887ebadde502c76
   - enabled: 0
-    path: Assets/SherpaOnnx/Scene/SampleOfflineRecognizer.unity
+    path: Assets/SherpaOnnx/Scene/SpeechRecognitionOffline.unity
     guid: b437223b9ee3d994bb22449bc204e583
+  - enabled: 0
+    path: Assets/SherpaOnnx/Scene/SpeakerIdentification.unity
+    guid: b341bc2514749e84c87ee7103efeb3c6
   m_configObjects: {}
