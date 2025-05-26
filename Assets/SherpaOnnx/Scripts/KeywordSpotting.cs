@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 关键字识别
 /// </summary>
-public class Keyword : MonoBehaviour
+public class KeywordSpotting : MonoBehaviour
 {
     KeywordSpotter keywordSpotter;
     string pathRoot;

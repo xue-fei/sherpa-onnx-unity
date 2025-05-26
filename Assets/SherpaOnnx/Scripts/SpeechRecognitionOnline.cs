@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(MicrophoneWebGL))]
-public class SampleOnlineRecognizer : MonoBehaviour
+public class SpeechRecognitionOnline : MonoBehaviour
 {
     // 声明配置和识别器变量
     OnlineRecognizer recognizer = null;
@@ -27,7 +27,7 @@ public class SampleOnlineRecognizer : MonoBehaviour
 
     public InputField inputField;
 
-    public Keyword keyword;
+    public KeywordSpotting keyword;
     public SpeakerIdentification speakerIdentification;
 
     // Start is called before the first frame update

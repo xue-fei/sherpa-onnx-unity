@@ -1,5 +1,4 @@
 using System.IO;
-using System;
 using SherpaOnnx;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,7 +7,7 @@ using UnityEngine.UI;
 using uMicrophoneWebGL;
 using System.Collections.Generic;
 
-public class SampleOfflineRecognizer : MonoBehaviour
+public class SpeechRecognitionOffline : MonoBehaviour
 {
     public Button button;
     public InputField inputField;
@@ -111,12 +110,6 @@ public class SampleOfflineRecognizer : MonoBehaviour
         offlineSpeechDenoiser = new OfflineSpeechDenoiser(osdc);
 
         isDone = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     void PointerDown(BaseEventData data)
