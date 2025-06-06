@@ -1,17 +1,10 @@
+using System;
 using System.IO;
 using SherpaOnnx;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using uMicrophoneWebGL;
-using System.Collections.Generic;
 
-public class SpeechRecognitionOffline : MonoBehaviour
+public class Offline : SpeechRecognition
 {
-    public Button button;
-    public InputField inputField;
-
     OfflineRecognizer recognizer = null;
     OfflineStream offlineStream = null;
     string tokensPath = "tokens.txt";
@@ -27,32 +20,12 @@ public class SpeechRecognitionOffline : MonoBehaviour
     OfflineSpeechDenoiser offlineSpeechDenoiser = null;
     DenoisedAudio denoisedAudio = null;
 
-    MicrophoneWebGL microphone;
-
-    bool isDone = false;
-    List<float> buffer = new List<float>();
+    public bool initDone = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        UnityAction<BaseEventData> down = new UnityAction<BaseEventData>(PointerDown);
-        EventTrigger.Entry eDown = new EventTrigger.Entry();
-        eDown.eventID = EventTriggerType.PointerDown;
-        eDown.callback.AddListener(down);
-        EventTrigger etDown = button.gameObject.AddComponent<EventTrigger>();
-        etDown.triggers.Add(eDown);
-
-        UnityAction<BaseEventData> up = new UnityAction<BaseEventData>(PointerUp);
-        EventTrigger.Entry eUp = new EventTrigger.Entry();
-        eUp.eventID = EventTriggerType.PointerUp;
-        eUp.callback.AddListener(up);
-        EventTrigger etUp = button.gameObject.AddComponent<EventTrigger>();
-        etUp.triggers.Add(eUp);
-
-        microphone = GetComponent<MicrophoneWebGL>();
-        microphone.isAutoStart = false;
-        microphone.dataEvent.AddListener(OnData);
-
+        pathRoot = Util.GetPath() + "/models";
         Loom.RunAsync(() =>
         {
             Init();
@@ -61,7 +34,6 @@ public class SpeechRecognitionOffline : MonoBehaviour
 
     void Init()
     {
-        pathRoot = Util.GetPath() + "/models";
         modelPath = pathRoot + "/sherpa-onnx-paraformer-zh-small-2024-03-09";
         OfflineRecognizerConfig config = new OfflineRecognizerConfig();
         config.FeatConfig.SampleRate = sampleRate;
@@ -109,40 +81,20 @@ public class SpeechRecognitionOffline : MonoBehaviour
         osdc.Model = osdmc;
         offlineSpeechDenoiser = new OfflineSpeechDenoiser(osdc);
 
-        isDone = true;
+        initDone = true;
+        Loom.QueueOnMainThread(() =>
+        {
+            Debug.Log("文字转语音初始化完成");
+        });
     }
 
-    void PointerDown(BaseEventData data)
+    public override void RecognizeOffline(float[] input, Action<string> onResult)
     {
-        Debug.LogWarning("按下");
-        if (!isDone)
+        if (!initDone)
         {
-            Debug.LogWarning("not ok");
+            Debug.Log("Model is not ready yet.");
             return;
         }
-        buffer.Clear();
-        microphone.Begin();
-    }
-
-    void PointerUp(BaseEventData data)
-    {
-        Debug.LogWarning("抬起");
-        if (!isDone)
-        {
-            Debug.LogWarning("not ok");
-            return;
-        }
-        microphone.End();
-        Recognize(buffer.ToArray());
-    }
-
-    void OnData(float[] input)
-    {
-        buffer.AddRange(input);
-    }
-
-    void Recognize(float[] input)
-    {
         // 语音增强
         denoisedAudio = offlineSpeechDenoiser.Run(input, sampleRate);
         input = denoisedAudio.Samples;
@@ -151,8 +103,11 @@ public class SpeechRecognitionOffline : MonoBehaviour
         offlineStream.AcceptWaveform(sampleRate, input);
         recognizer.Decode(offlineStream);
         string result = offlineStream.Result.Text;
+        result = offlinePunctuation.AddPunct(result);
         offlineStream.Dispose();
-        inputField.text = offlinePunctuation.AddPunct(result.ToLower());
-        Debug.Log("识别结果:" + result);
+        if (onResult != null)
+        {
+            onResult(result);
+        }
     }
 }
