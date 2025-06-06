@@ -214,9 +214,9 @@ GameObject:
   - component: {fileID: 450787430}
   - component: {fileID: 450787429}
   - component: {fileID: 450787428}
-  - component: {fileID: 450787433}
   - component: {fileID: 450787432}
   - component: {fileID: 450787431}
+  - component: {fileID: 450787434}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -305,7 +305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 539280564}
   inputField: {fileID: 518305341}
-  speechRecognition: {fileID: 450787433}
+  speechRecognition: {fileID: 450787434}
 --- !u!114 &450787432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,7 +335,7 @@ MonoBehaviour:
   dataEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &450787433
+--- !u!114 &450787434
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -344,9 +344,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 450787427}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24ac2d97ca4f9bc4e9cd0416312d4119, type: 3}
+  m_Script: {fileID: 11500000, guid: 7251d39efe2a0d440a7d2a5e753e2e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initDone: 0
 --- !u!1 &478106854
 GameObject:
   m_ObjectHideFlags: 0

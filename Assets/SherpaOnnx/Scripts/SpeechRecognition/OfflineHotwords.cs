@@ -8,8 +8,10 @@ public class OfflineHotwords : SpeechRecognition
     OfflineRecognizer recognizer = null;
     OfflineStream offlineStream = null;
     string tokensPath = "tokens.txt";
-    string paraformer = "model.int8.onnx";
-    string decodingMethod = "modified_beam_search ";
+    string encoder = "encoder-epoch-99-avg-1.onnx";
+    string decoder = "decoder-epoch-99-avg-1.onnx";
+    string joiner = "joiner-epoch-99-avg-1.onnx";
+    string decodingMethod = "modified_beam_search"; 
     int numThreads = 1;
 
     string pathRoot;
@@ -42,14 +44,15 @@ public class OfflineHotwords : SpeechRecognition
 
         OfflineModelConfig offlineModelConfig = new OfflineModelConfig();
         offlineModelConfig.Tokens = Path.Combine(modelPath, tokensPath);
+        offlineModelConfig.Transducer.Encoder = Path.Combine(modelPath, encoder);
+        offlineModelConfig.Transducer.Decoder = Path.Combine(modelPath, decoder);
+        offlineModelConfig.Transducer.Joiner = Path.Combine(modelPath, joiner); 
         offlineModelConfig.NumThreads = numThreads;
         offlineModelConfig.Provider = "cpu";
-        offlineModelConfig.Debug = 0;
-
-        OfflineParaformerModelConfig paraformerConfig = new OfflineParaformerModelConfig();
-        paraformerConfig.Model = Path.Combine(modelPath, paraformer);
-
-        offlineModelConfig.Paraformer = paraformerConfig;
+        config.ModelConfig.ModelingUnit = "cjkchar";
+        config.HotwordsFile = Path.Combine(modelPath, "hotwords_cn.txt");
+        config.HotwordsScore = 2.0f;
+        offlineModelConfig.Debug = 0; 
         config.ModelConfig = offlineModelConfig;
 
         OfflineLMConfig offlineLMConfig = new OfflineLMConfig();
