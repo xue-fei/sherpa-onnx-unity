@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class SpeechSynthesisSample : MonoBehaviour
 {
-    public SpeechSynthesisKokoro speechSynthesis;
+    public SpeechSynthesis speechSynthesis;
     public InputField inputFieldSpeakerId;
     public InputField inputFieldContent;
     public Button button;
