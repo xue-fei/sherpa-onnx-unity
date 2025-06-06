@@ -7,13 +7,13 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class SpeechSynthesis : MonoBehaviour
+public class SpeechSynthesisKokoro : MonoBehaviour
 {
     OfflineTts ot;
     OfflineTtsGeneratedAudio otga;
     OfflineTtsConfig config;
     OfflineTtsCallback otc;
-    static SpeechSynthesis Instance;
+    static SpeechSynthesisKokoro Instance;
     AudioSource audioSource;
     int SampleRate = 22050;
     AudioClip audioClip = null;
