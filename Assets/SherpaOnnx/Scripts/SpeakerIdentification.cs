@@ -10,6 +10,7 @@ public class SpeakerIdentification : MonoBehaviour
     SpeakerEmbeddingManager manager;
     string pathRoot;
     string modelPath;
+    string tempAudioPath;
 
     OfflineSpeechDenoiser offlineSpeechDenoiser = null;
 
@@ -21,6 +22,11 @@ public class SpeakerIdentification : MonoBehaviour
         pathRoot = Util.GetPath() + "/models";
         modelPath = pathRoot + "/3dspeaker_speech_eres2net_base_200k_sv_zh-cn_16k-common.onnx";
 
+        tempAudioPath = Util.GetPath() + "/temp";
+        if (!Directory.Exists(tempAudioPath))
+        {
+            Directory.CreateDirectory(tempAudioPath);
+        }
     }
 
     public void Init()
@@ -117,11 +123,11 @@ public class SpeakerIdentification : MonoBehaviour
     {
         Loom.RunAsync(() =>
         {
-            string filePath = pathRoot + "/" + DateTime.Now.ToFileTime().ToString() + ".wav";
+            string filePath = tempAudioPath + "/" + DateTime.Now.ToFileTime().ToString() + ".wav";
             DenoisedAudio denoisedAudio = offlineSpeechDenoiser.Run(audioData.ToArray(), 16000);
             if (denoisedAudio.SaveToWaveFile(filePath))
             {
-
+                Debug.Log("Saved denoised audio to " + filePath);
             }
             Util.SaveClip(1, 16000, audioData.ToArray(), filePath);
             var embedding = ComputeEmbedding(extractor, filePath);
@@ -129,7 +135,7 @@ public class SpeakerIdentification : MonoBehaviour
             if (name == "")
             {
                 name = "<Unknown>";
-            } 
+            }
             audioData.Clear();
             Loom.QueueOnMainThread(() =>
             {
@@ -174,9 +180,13 @@ public class SpeakerIdentification : MonoBehaviour
         //小端和大端顺序要调整
         short s;
         if (BitConverter.IsLittleEndian)
+        {
             s = (short)((secondByte << 8) | firstByte);
+        }
         else
+        {
             s = (short)((firstByte << 8) | secondByte);
+        }
         // convert to range from -1 to (just below) 1
         return s / 32768.0F;
     }
