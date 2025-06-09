@@ -1,19 +1,18 @@
-using AOT;
-using SherpaOnnx;
 using System;
 using System.Collections.Generic;
+using AOT;
+using SherpaOnnx;
 using System.IO;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
-public class Kokoro : SpeechSynthesis
+public class ModelVits : SpeechSynthesis
 {
     OfflineTts ot;
     OfflineTtsGeneratedAudio otga;
     OfflineTtsConfig config;
     OfflineTtsCallback otc;
-    static Kokoro Instance;
+    static ModelVits Instance;
     AudioSource audioSource;
     int SampleRate = 22050;
     AudioClip audioClip = null;
@@ -62,20 +61,19 @@ public class Kokoro : SpeechSynthesis
         Instance = this;
         initDone = false;
         config = new OfflineTtsConfig();
-        config.Model.Kokoro.Model = Path.Combine(pathRoot, "kokoro-multi-lang-v1_0/model.onnx");
-        config.Model.Kokoro.Voices = Path.Combine(pathRoot, "kokoro-multi-lang-v1_0/voices.bin");
-        config.Model.Kokoro.Tokens = Path.Combine(pathRoot, "kokoro-multi-lang-v1_0/tokens.txt");
-        config.Model.Kokoro.DataDir = Path.Combine(pathRoot, "kokoro-multi-lang-v1_0/espeak-ng-data");
-        config.Model.Kokoro.DictDir = Path.Combine(pathRoot, "kokoro-multi-lang-v1_0/dict");
-        config.Model.Kokoro.Lexicon = Path.Combine(pathRoot, "kokoro-multi-lang-v1_0/lexicon-us-en.txt")
-            + "," + Path.Combine(pathRoot, "kokoro-multi-lang-v1_0/lexicon-zh.txt");
-        config.Model.Kokoro.LengthScale = 1f;
+        config.Model.Vits.Model = Path.Combine(pathRoot, "vits-zh-hf-theresa/theresa.onnx");
+        config.Model.Vits.Tokens = Path.Combine(pathRoot, "vits-zh-hf-theresa/tokens.txt");
+        config.Model.Vits.DictDir = Path.Combine(pathRoot, "vits-zh-hf-theresa/dict");
+        config.Model.Vits.Lexicon = Path.Combine(pathRoot, "vits-zh-hf-theresa/lexicon.txt");
+        config.Model.Vits.LengthScale = 1f;
+        config.Model.Vits.NoiseScale = 0.667f;
+        config.Model.Vits.NoiseScaleW = 0.8f;
         config.Model.NumThreads = 4;
         config.Model.Debug = 1;
         config.Model.Provider = "cpu";
-        //config.RuleFsts = pathRoot + "/kokoro-multi-lang-v1_0/phone-zh.fst" + ","
-        //            + pathRoot + "/kokoro-multi-lang-v1_0/date-zh.fst" + ","
-        //        + pathRoot + "/kokoro-multi-lang-v1_0/number-zh.fst";
+        config.RuleFsts = pathRoot + "/vits-zh-hf-theresa/phone.fst" + ","
+                    + pathRoot + "/vits-zh-hf-theresa/date.fst" + ","
+                + pathRoot + "/vits-zh-hf-theresa/number.fst";
         config.MaxNumSentences = 1;
         ot = new OfflineTts(config);
         SampleRate = ot.SampleRate;

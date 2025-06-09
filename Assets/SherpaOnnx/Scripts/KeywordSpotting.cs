@@ -17,7 +17,7 @@ public class KeywordSpotting : MonoBehaviour
     {
         pathRoot = Util.GetPath() + "/models";
 
-        //需要将此文件夹拷贝到exe所在的目录
+        //需要将此文件夹拷贝到models
         modelPath = pathRoot + "/sherpa-onnx-kws-zipformer-wenetspeech-3.3M-2024-01-01";
         KeywordSpotterConfig config = new KeywordSpotterConfig();
         config.FeatConfig.SampleRate = 16000;
