@@ -1,3 +1,4 @@
+using SherpaOnnxUnity;
 using System.Collections.Generic;
 using uMicrophoneWebGL;
 using UnityEngine;

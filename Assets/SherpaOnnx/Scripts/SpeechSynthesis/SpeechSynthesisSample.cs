@@ -1,3 +1,4 @@
+using SherpaOnnxUnity;
 using UnityEngine;
 using UnityEngine.UI;
 
