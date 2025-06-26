@@ -41,14 +41,6 @@ public class SpeakerIdentification : MonoBehaviour
         OfflineSpeechDenoiserConfig osdc = new OfflineSpeechDenoiserConfig();
         osdc.Model = osdmc;
         offlineSpeechDenoiser = new OfflineSpeechDenoiser(osdc);
-        //byte[] bytes = File.ReadAllBytes(pathRoot + "/xuefei.wav");
-        //float[] data = BytesToFloat(bytes);
-        //DenoisedAudio denoisedAudio = offlineSpeechDenoiser.Run(data, 16000);
-
-        //if (denoisedAudio.SaveToWaveFile(pathRoot + "/xuefei1.wav"))
-        //{
-
-        //}
 
         var config = new SpeakerEmbeddingExtractorConfig();
         config.Model = modelPath;
@@ -66,15 +58,6 @@ public class SpeakerIdentification : MonoBehaviour
         {
             spk1Vec[i] = ComputeEmbedding(extractor, spk1Files[i]);
         }
-
-        // 给注册音频降噪一下
-        //byte[] bytes = File.ReadAllBytes(pathRoot + "/xuefei1.wav");
-        //float[] data = BytesToFloat(bytes);
-        //DenoisedAudio denoisedAudio = offlineSpeechDenoiser.Run(data, 16000);
-        //if (denoisedAudio.SaveToWaveFile(pathRoot + "/xuefei1.wav"))
-        //{
-
-        //}
 
         //注册说话人
         if (!manager.Add("xuefei", spk1Vec))
@@ -129,7 +112,6 @@ public class SpeakerIdentification : MonoBehaviour
             {
                 Debug.Log("Saved denoised audio to " + filePath);
             }
-            Util.SaveClip(1, 16000, audioData.ToArray(), filePath);
             var embedding = ComputeEmbedding(extractor, filePath);
             string name = manager.Search(embedding, threshold);
             if (name == "")
@@ -148,46 +130,11 @@ public class SpeakerIdentification : MonoBehaviour
     public float[] ComputeEmbedding(SpeakerEmbeddingExtractor extractor, string filename)
     {
         byte[] bytes = File.ReadAllBytes(filename);
-        float[] data = BytesToFloat(bytes);
+        float[] data = Util.BytesToFloat(bytes);
         var stream = extractor.CreateStream();
         stream.AcceptWaveform(16000, data);
         stream.InputFinished();
         var embedding = extractor.Compute(stream);
         return embedding;
-    }
-
-    public float[] ComputeEmbedding(SpeakerEmbeddingExtractor extractor, int sample, float[] data)
-    {
-        var stream = extractor.CreateStream();
-        stream.AcceptWaveform(sample, data);
-        stream.InputFinished();
-        var embedding = extractor.Compute(stream);
-        return embedding;
-    }
-
-    public float[] BytesToFloat(byte[] byteArray)
-    {
-        float[] sounddata = new float[byteArray.Length / 2];
-        for (int i = 0; i < sounddata.Length; i++)
-        {
-            sounddata[i] = BytesToFloat(byteArray[i * 2], byteArray[i * 2 + 1]);
-        }
-        return sounddata;
-    }
-
-    private float BytesToFloat(byte firstByte, byte secondByte)
-    {
-        //小端和大端顺序要调整
-        short s;
-        if (BitConverter.IsLittleEndian)
-        {
-            s = (short)((secondByte << 8) | firstByte);
-        }
-        else
-        {
-            s = (short)((firstByte << 8) | secondByte);
-        }
-        // convert to range from -1 to (just below) 1
-        return s / 32768.0F;
     }
 }
