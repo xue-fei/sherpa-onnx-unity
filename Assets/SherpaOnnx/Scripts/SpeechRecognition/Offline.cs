@@ -21,6 +21,7 @@ namespace SherpaOnnxUnity
         OfflinePunctuation offlinePunctuation = null;
         OfflineSpeechDenoiser offlineSpeechDenoiser = null;
         DenoisedAudio denoisedAudio = null;
+        string tempAudioPath;
 
         public bool initDone = false;
 
@@ -28,6 +29,11 @@ namespace SherpaOnnxUnity
         void Start()
         {
             pathRoot = Util.GetPath() + "/models";
+            tempAudioPath = Util.GetPath() + "/temp";
+            if (!Directory.Exists(tempAudioPath))
+            {
+                Directory.CreateDirectory(tempAudioPath);
+            }
             Loom.RunAsync(() =>
             {
                 Init();
@@ -97,12 +103,18 @@ namespace SherpaOnnxUnity
                 Debug.Log("Model is not ready yet.");
                 return;
             }
+            string filePath = tempAudioPath + "/" + DateTime.Now.ToFileTime().ToString() + ".wav";
             // 语音增强
-            denoisedAudio = offlineSpeechDenoiser.Run(input, sampleRate);
-            input = denoisedAudio.Samples;
+            denoisedAudio = offlineSpeechDenoiser.Run(input, sampleRate); 
+            if (denoisedAudio.SaveToWaveFile(filePath))
+            {
+                Debug.Log("Saved denoised audio to " + filePath);
+            }
+            byte[] bytes = File.ReadAllBytes(filePath);
+            float[] data = Util.BytesToFloat(bytes);
 
             offlineStream = recognizer.CreateStream();
-            offlineStream.AcceptWaveform(sampleRate, input);
+            offlineStream.AcceptWaveform(sampleRate, data);
             recognizer.Decode(offlineStream);
             string result = offlineStream.Result.Text;
             result = offlinePunctuation.AddPunct(result);
