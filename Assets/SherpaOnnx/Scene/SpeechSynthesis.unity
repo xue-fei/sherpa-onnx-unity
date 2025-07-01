@@ -194,10 +194,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: sherpa-onnx Speech-to-text, text-to-speech, speaker diarization, speech
-    enhancement, and VAD using next-gen Kaldi with onnxruntime without Internet connection.
-    Support embedded systems, Android, iOS, HarmonyOS, Raspberry Pi, RISC-V, x86_64
-    servers, websocket server/client, support 11 programming languages
+  m_Text: "\u5F53\u591C\u5E55\u964D\u4E34\uFF0C\u661F\u5149\u70B9\u70B9\uFF0C\u4F34\u968F\u7740\u5FAE\u98CE\u62C2\u9762\uFF0C\u6211\u5728\u9759\u8C27\u4E2D\u611F\u53D7\u7740\u65F6\u5149\u7684\u6D41\u8F6C\uFF0C\u601D\u5FF5\u5982\u6D9F\u6F2A\u8361\u6F3E\uFF0C\u68A6\u5883\u5982\u753B\u5377\u5C55\u5F00\uFF0C\u6211\u4E0E\u81EA\u7136\u878D\u4E3A\u4E00\u4F53\uFF0C\u6C89\u9759\u5728\u8FD9\u7247\u5B81\u9759\u7684\u7F8E\u4E3D\u4E4B\u4E2D\uFF0C\u611F\u53D7\u7740\u751F\u547D\u7684\u5947\u8FF9\u4E0E\u6E29\u67D4"
 --- !u!222 &34455494
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -310,10 +307,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: sherpa-onnx Speech-to-text, text-to-speech, speaker diarization, speech
-    enhancement, and VAD using next-gen Kaldi with onnxruntime without Internet connection.
-    Support embedded systems, Android, iOS, HarmonyOS, Raspberry Pi, RISC-V, x86_64
-    servers, websocket server/client, support 11 programming languages
+  m_Text: "\u5F53\u591C\u5E55\u964D\u4E34\uFF0C\u661F\u5149\u70B9\u70B9\uFF0C\u4F34\u968F\u7740\u5FAE\u98CE\u62C2\u9762\uFF0C\u6211\u5728\u9759\u8C27\u4E2D\u611F\u53D7\u7740\u65F6\u5149\u7684\u6D41\u8F6C\uFF0C\u601D\u5FF5\u5982\u6D9F\u6F2A\u8361\u6F3E\uFF0C\u68A6\u5883\u5982\u753B\u5377\u5C55\u5F00\uFF0C\u6211\u4E0E\u81EA\u7136\u878D\u4E3A\u4E00\u4F53\uFF0C\u6C89\u9759\u5728\u8FD9\u7247\u5B81\u9759\u7684\u7F8E\u4E3D\u4E4B\u4E2D\uFF0C\u611F\u53D7\u7740\u751F\u547D\u7684\u5947\u8FF9\u4E0E\u6E29\u67D4"
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -881,8 +875,7 @@ GameObject:
   - component: {fileID: 874914870}
   - component: {fileID: 874914874}
   - component: {fileID: 874914877}
-  - component: {fileID: 874914873}
-  - component: {fileID: 874914878}
+  - component: {fileID: 874914879}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -957,20 +950,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &874914873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 874914869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 012ee0da493577f4097e08f19830ec6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initDone: 0
-  audioLength: 0
 --- !u!82 &874914874
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1079,20 +1058,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9d9bba35e5f138cb999f90e9961ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speechSynthesis: {fileID: 874914873}
+  speechSynthesis: {fileID: 874914879}
   inputFieldSpeakerId: {fileID: 833683944}
   inputFieldContent: {fileID: 103212903}
   button: {fileID: 142561137}
---- !u!114 &874914878
+--- !u!114 &874914879
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 874914869}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e39795a38a2dd04fac03de454212e13, type: 3}
+  m_Script: {fileID: 11500000, guid: f4122a4739bfd244fafee2822a82164a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   initDone: 0
