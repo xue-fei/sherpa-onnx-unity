@@ -20,12 +20,12 @@ Unity 2021.3.21f1c1
 	sherpa-onnx-kws-zipformer-wenetspeech-3.3M-2024-01-01   
 	https://github.com/k2-fsa/sherpa-onnx/releases/download/kws-models/sherpa-onnx-kws-zipformer-wenetspeech-3.3M-2024-01-01.tar.bz2   
     
-## 3. recorder    
+## 2. recorder    
 	https://gitee.com/awnuxcvbn/uMicrophoneWebGL     
 	fork from    
 	https://github.com/hecomi/uMicrophoneWebGL   
      
-## 4. Unity-Logs-Viewer   
+## 3. Unity-Logs-Viewer   
 	https://gitee.com/awnuxcvbn/UnityLogsViewer     
 	fork from      
 	https://github.com/aliessmael/Unity-Logs-Viewer   
