@@ -12,6 +12,7 @@ public class KeywordSpotting : MonoBehaviour
     string modelPath;
     OnlineStream onlineStream;
     int sampleRate = 16000;
+    public bool initDone = false;
 
     public void Init()
     {
@@ -34,6 +35,7 @@ public class KeywordSpotting : MonoBehaviour
         config.KeywordsFile = Path.Combine(modelPath, "keywords.txt");
         keywordSpotter = new KeywordSpotter(config);
         onlineStream = keywordSpotter.CreateStream();
+        initDone = true;
     }
 
     public void AcceptData(float[] data)
@@ -41,15 +43,13 @@ public class KeywordSpotting : MonoBehaviour
         onlineStream.AcceptWaveform(sampleRate, data);
     }
 
+    KeywordResult result;
     public string Recognize()
-    {
-        float[] tailPadding = new float[(int)(sampleRate * 0.3)];
-        onlineStream.AcceptWaveform(sampleRate, tailPadding);
-        onlineStream.InputFinished();
+    { 
         while (keywordSpotter.IsReady(onlineStream))
         {
             keywordSpotter.Decode(onlineStream);
-            var result = keywordSpotter.GetResult(onlineStream);
+            result = keywordSpotter.GetResult(onlineStream);
             if (result.Keyword != string.Empty)
             {
                 Debug.Log("关键字: " + result.Keyword);
