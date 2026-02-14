@@ -1,8 +1,15 @@
 # sherpa-onnx-unity      
 https://github.com/k2-fsa/sherpa-onnx   
-Unity 2022.3.62f3       
+Unity 2021.3.21f1c1     
     
 ## 1. models  
+	
+	TTS  
+	https://github.com/k2-fsa/sherpa-onnx/releases/tag/tts-models   
+	
+	ASR  
+	https://github.com/k2-fsa/sherpa-onnx/releases/tag/asr-models  
+	
 	sherpa-onnx-punct-ct-transformer-zh-en-vocab272727-2024-04-12   
 	https://github.com/k2-fsa/sherpa-onnx/releases/download/punctuation-models/sherpa-onnx-punct-ct-transformer-zh-en-vocab272727-2024-04-12.tar.bz2  
 
