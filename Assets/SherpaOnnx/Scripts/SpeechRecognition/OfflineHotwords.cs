@@ -50,7 +50,7 @@ namespace SherpaOnnxUnity
             config.FeatConfig.FeatureDim = 80;
             config.DecodingMethod = decodingMethod;
 
-            OfflineModelConfig offlineModelConfig = new OfflineModelConfig();
+            OfflineModelConfig offlineModelConfig =  OfflineModelConfig.Creat();
             offlineModelConfig.Tokens = Path.Combine(modelPath, tokensPath);
             offlineModelConfig.Transducer.Encoder = Path.Combine(modelPath, encoder);
             offlineModelConfig.Transducer.Decoder = Path.Combine(modelPath, decoder);

@@ -1,0 +1,33 @@
+/// Copyright (c)  2024.5 by 东风破
+
+using System.Runtime.InteropServices;
+
+namespace SherpaOnnx
+{
+    [StructLayout(LayoutKind.Sequential)]
+    public struct OfflineTtsConfig
+    {
+        public static OfflineTtsConfig Creat()
+        {
+            return new OfflineTtsConfig
+            {
+                Model = OfflineTtsModelConfig.Creat(),
+                RuleFsts = "",
+                MaxNumSentences = 1,
+                RuleFars = "",
+                SilenceScale = 0.2F,
+            };
+        }
+        public OfflineTtsModelConfig Model;
+
+        [MarshalAs(UnmanagedType.LPStr)]
+        public string RuleFsts;
+
+        public int MaxNumSentences;
+
+        [MarshalAs(UnmanagedType.LPStr)]
+        public string RuleFars;
+
+        public float SilenceScale;
+    }
+}
