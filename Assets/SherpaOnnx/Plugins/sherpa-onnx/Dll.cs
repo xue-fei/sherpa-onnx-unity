@@ -6,6 +6,10 @@ namespace SherpaOnnx
 {
     internal static class Dll
     {
+#if UNITY_IOS && !UNITY_EDITOR
+        public const string Filename = "__internal";
+#else
         public const string Filename = "sherpa-onnx-c-api";
+#endif
     }
 }
