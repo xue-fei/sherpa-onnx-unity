@@ -4,7 +4,6 @@ using System.Runtime.InteropServices;
 
 namespace SherpaOnnx
 {
-
     [StructLayout(LayoutKind.Sequential)]
     public struct OfflineModelConfig
     {
@@ -25,16 +24,17 @@ namespace SherpaOnnx
                 ModelingUnit = "cjkchar",
                 BpeVocab = "",
                 TeleSpeechCtc = "",
-                SenseVoice =   OfflineSenseVoiceModelConfig.Creat(),
-                Moonshine =   OfflineMoonshineModelConfig.Creat(),
-                FireRedAsr =  OfflineFireRedAsrModelConfig.Creat(),
+                SenseVoice = OfflineSenseVoiceModelConfig.Creat(),
+                Moonshine = OfflineMoonshineModelConfig.Creat(),
+                FireRedAsr = OfflineFireRedAsrModelConfig.Creat(),
                 Dolphin = OfflineDolphinModelConfig.Create(),
-                ZipformerCtc =   OfflineZipformerCtcModelConfig.Creat(),
-                Canary =   OfflineCanaryModelConfig.Creat(),
-                WenetCtc =   OfflineWenetCtcModelConfig.Creat(),
-                Omnilingual =  OfflineOmnilingualAsrCtcModelConfig.Creat(),
-                MedAsr =   OfflineMedAsrCtcModelConfig.Creat(),
-                FunAsrNano =   OfflineFunAsrNanoModelConfig.Creat(),
+                ZipformerCtc = OfflineZipformerCtcModelConfig.Creat(),
+                Canary = OfflineCanaryModelConfig.Creat(),
+                WenetCtc = OfflineWenetCtcModelConfig.Creat(),
+                Omnilingual = OfflineOmnilingualAsrCtcModelConfig.Creat(),
+                MedAsr = OfflineMedAsrCtcModelConfig.Creat(),
+                FunAsrNano = OfflineFunAsrNanoModelConfig.Creat(),
+                FireRedAsrCtc = OfflineFireRedAsrCtcModelConfig.Creat(),
             };
         }
         public OfflineTransducerModelConfig Transducer;
@@ -75,5 +75,6 @@ namespace SherpaOnnx
         public OfflineOmnilingualAsrCtcModelConfig Omnilingual;
         public OfflineMedAsrCtcModelConfig MedAsr;
         public OfflineFunAsrNanoModelConfig FunAsrNano;
+        public OfflineFireRedAsrCtcModelConfig FireRedAsrCtc;
     }
 }
