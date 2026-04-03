@@ -58,8 +58,8 @@ namespace SherpaOnnxUnity
             offlineModelConfig.NumThreads = numThreads;
             offlineModelConfig.Provider = "cpu";
             config.ModelConfig.ModelingUnit = "cjkchar";
-            config.HotwordsFile = Path.Combine(modelPath, "hotwords_cn.txt");
-            config.HotwordsScore = 2.0f;
+            //config.HotwordsFile = Path.Combine(modelPath, "hotwords_cn.txt");
+            //config.HotwordsScore = 2.0f;
             offlineModelConfig.Debug = 0;
             config.ModelConfig = offlineModelConfig;
 
