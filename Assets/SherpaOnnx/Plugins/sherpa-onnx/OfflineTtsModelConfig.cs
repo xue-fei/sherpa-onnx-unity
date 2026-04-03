@@ -17,6 +17,7 @@ namespace SherpaOnnx
                 Kitten = OfflineTtsKittenModelConfig.Creat(),
                 ZipVoice = OfflineTtsZipVoiceModelConfig.Creat(),
                 Pocket = OfflineTtsPocketModelConfig.Creat(),
+                Supertonic = OfflineTtsSupertonicModelConfig.Creat(),
                 NumThreads = 1,
                 Debug = 0,
                 Provider = "cpu",
@@ -35,5 +36,6 @@ namespace SherpaOnnx
         public OfflineTtsKittenModelConfig Kitten;
         public OfflineTtsZipVoiceModelConfig ZipVoice;
         public OfflineTtsPocketModelConfig Pocket;
+        public OfflineTtsSupertonicModelConfig Supertonic;
     }
 }

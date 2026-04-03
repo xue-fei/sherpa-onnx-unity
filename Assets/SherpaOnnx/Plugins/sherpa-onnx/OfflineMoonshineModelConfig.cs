@@ -15,6 +15,7 @@ namespace SherpaOnnx
                 Encoder = "",
                 UncachedDecoder = "",
                 CachedDecoder = "",
+                MergedDecoder = "",
             };
         }
         [MarshalAs(UnmanagedType.LPStr)]
@@ -28,5 +29,8 @@ namespace SherpaOnnx
 
         [MarshalAs(UnmanagedType.LPStr)]
         public string CachedDecoder;
+
+        [MarshalAs(UnmanagedType.LPStr)]
+        public string MergedDecoder;
     }
 }

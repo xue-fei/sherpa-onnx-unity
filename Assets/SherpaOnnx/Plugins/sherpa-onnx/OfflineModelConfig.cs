@@ -35,6 +35,7 @@ namespace SherpaOnnx
                 MedAsr = OfflineMedAsrCtcModelConfig.Creat(),
                 FunAsrNano = OfflineFunAsrNanoModelConfig.Creat(),
                 FireRedAsrCtc = OfflineFireRedAsrCtcModelConfig.Creat(),
+                Qwen3Asr = OfflineQwen3AsrModelConfig.Creat(),
             };
         }
         public OfflineTransducerModelConfig Transducer;
@@ -76,5 +77,6 @@ namespace SherpaOnnx
         public OfflineMedAsrCtcModelConfig MedAsr;
         public OfflineFunAsrNanoModelConfig FunAsrNano;
         public OfflineFireRedAsrCtcModelConfig FireRedAsrCtc;
+        public OfflineQwen3AsrModelConfig Qwen3Asr;
     }
 }

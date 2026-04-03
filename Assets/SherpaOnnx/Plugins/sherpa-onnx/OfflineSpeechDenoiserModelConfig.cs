@@ -12,6 +12,7 @@ namespace SherpaOnnx
             return new OfflineSpeechDenoiserModelConfig
             {
                 Gtcrn =   OfflineSpeechDenoiserGtcrnModelConfig.Creat(),
+                Dpdfnet =  OfflineSpeechDenoiserDpdfNetModelConfig.Creat(),
                 NumThreads = 1,
                 Debug = 0,
                 Provider = "cpu",
@@ -26,5 +27,7 @@ namespace SherpaOnnx
 
         [MarshalAs(UnmanagedType.LPStr)]
         public string Provider;
+
+        public OfflineSpeechDenoiserDpdfNetModelConfig Dpdfnet;
     }
 }
