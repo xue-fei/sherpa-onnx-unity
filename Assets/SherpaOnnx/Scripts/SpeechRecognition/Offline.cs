@@ -48,7 +48,7 @@ namespace SherpaOnnxUnity
             config.FeatConfig.FeatureDim = 80;
             config.DecodingMethod = decodingMethod;
 
-            OfflineModelConfig offlineModelConfig =  OfflineModelConfig.Creat();
+            OfflineModelConfig offlineModelConfig = new OfflineModelConfig();
             offlineModelConfig.Tokens = Path.Combine(modelPath, tokensPath);
             offlineModelConfig.NumThreads = numThreads;
             offlineModelConfig.Provider = "cpu";
