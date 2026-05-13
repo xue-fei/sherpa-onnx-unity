@@ -16,3 +16,4 @@ sherpa-onnx-unity.sln
 *.csproj
 Assets/StreamingAssets/build_info
 Assets/StreamingAssets/build_info.meta
+*.keystore
