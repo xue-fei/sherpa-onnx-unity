@@ -13,8 +13,9 @@ namespace SherpaOnnxUnity
     {
         OfflineTts ot;
         OfflineTtsGeneratedAudio otga;
+        OfflineTtsGenerationConfig genConfig;
         OfflineTtsConfig config;
-        OfflineTtsCallback otc;
+        OfflineTtsCallbackProgressWithArg otc;
         static ModelZipVoice Instance;
         AudioSource audioSource;
         int SampleRate = 22050;
@@ -35,12 +36,12 @@ namespace SherpaOnnxUnity
         void Start()
         {
             pathRoot = Util.GetPath() + "/models";
-            pathRoot += "sherpa-onnx-zipvoice-distill-int8-zh-en-emilia/";
+            pathRoot += "/sherpa-onnx-zipvoice-distill-int8-zh-en-emilia/";
             audioSource = GetComponent<AudioSource>();
-            Loom.RunAsync(() =>
-            {
-                Init();
-            });
+            //Loom.RunAsync(() =>
+            //{
+            Init();
+            //});
         }
 
         // Update is called once per frame
@@ -68,17 +69,27 @@ namespace SherpaOnnxUnity
             config = new OfflineTtsConfig();
             config.Model.ZipVoice.Encoder = Path.Combine(pathRoot, "encoder.int8.onnx");
             config.Model.ZipVoice.Decoder = Path.Combine(pathRoot, "decoder.int8.onnx");
+            // https://github.com/k2-fsa/sherpa-onnx/releases/download/vocoder-models/vocos_24khz.onnx
             config.Model.ZipVoice.Vocoder = Path.Combine(pathRoot, "vocos_24khz.onnx");
             config.Model.ZipVoice.DataDir = Path.Combine(pathRoot, "espeak-ng-data");
             config.Model.ZipVoice.Tokens = Path.Combine(pathRoot, "tokens.txt");
             config.Model.ZipVoice.Lexicon = Path.Combine(pathRoot, "lexicon.txt");
+
+            genConfig = new OfflineTtsGenerationConfig();
+            float[] samples = Util.ReadMono24kWavToFloat(Path.Combine(pathRoot, "test_wavs/leijun-1.wav"));
+            genConfig.ReferenceAudio = samples;
+            genConfig.ReferenceSampleRate = 24000;
+            genConfig.ReferenceText = "那还是三十六年前, 一九八七年. 我呢考上了武汉大学的计算机系.";
+            genConfig.NumSteps = 4;
+            genConfig.Extra["min_char_in_sentence"] = "10";
+
             config.Model.NumThreads = 4;
             config.Model.Debug = 1;
             config.Model.Provider = "cpu";
             config.MaxNumSentences = 1;
             ot = new OfflineTts(config);
             SampleRate = ot.SampleRate;
-            otc = new OfflineTtsCallback(OnStaticAudioData);
+            otc = new OfflineTtsCallbackProgressWithArg(OnStaticAudioData);
             initDone = true;
             Loom.QueueOnMainThread(() =>
             {
@@ -95,12 +106,12 @@ namespace SherpaOnnxUnity
             }
             Loom.RunAsync(() =>
             {
-                otga = ot.GenerateWithCallback(text, speed, speakerId, otc);
+                otga = ot.GenerateWithConfig(text, genConfig, otc);
             });
         }
 
-        [MonoPInvokeCallback(typeof(OfflineTtsCallback))]
-        static int OnStaticAudioData(IntPtr samples, int n)
+        [MonoPInvokeCallback(typeof(OfflineTtsCallbackProgressWithArg))]
+        static int OnStaticAudioData(IntPtr samples, int n, float progress, IntPtr arg)
         {
             return Instance.OnAudioData(samples, n);
         }

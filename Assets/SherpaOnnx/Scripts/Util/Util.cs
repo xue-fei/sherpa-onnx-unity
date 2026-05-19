@@ -94,4 +94,107 @@ public static class Util
         // convert to range from -1 to (just below) 1
         return s / 32768.0F;
     }
+
+    public static float[] ReadMono16kWavToFloat(string filePath)
+    {
+        using FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+        using BinaryReader reader = new BinaryReader(fs);
+
+        string riff = new string(reader.ReadChars(4));
+        int fileSize = reader.ReadInt32();
+        string wave = new string(reader.ReadChars(4));
+        string fmt = new string(reader.ReadChars(4));
+        int fmtSize = reader.ReadInt32();
+
+        short audioFormat = reader.ReadInt16();
+        short numChannels = reader.ReadInt16();
+        int fileSampleRate = reader.ReadInt32();
+        int byteRate = reader.ReadInt32();
+        short blockAlign = reader.ReadInt16();
+        short bitsPerSample = reader.ReadInt16();
+
+        if (riff != "RIFF" || wave != "WAVE" || fmt != "fmt ")
+            throw new Exception("无效的WAV文件头");
+        if (fmtSize > 16)
+            reader.ReadBytes(fmtSize - 16);
+
+        string dataChunkId;
+        do
+        {
+            dataChunkId = new string(reader.ReadChars(4));
+            if (dataChunkId != "data")
+                reader.ReadBytes(reader.ReadInt32());
+        } while (dataChunkId != "data");
+
+        int dataSize = reader.ReadInt32();
+
+        if (audioFormat != 1) throw new Exception("仅支持PCM格式");
+        if (numChannels != 1) throw new Exception("仅支持单声道音频");
+        if (fileSampleRate != 16000) throw new Exception("仅支持16kHz采样率");
+        if (bitsPerSample != 16) throw new Exception("仅支持16位采样深度");
+
+        int sampleCount = dataSize / 2;
+        float[] floatData = new float[sampleCount];
+        for (int i = 0; i < sampleCount; i++)
+        {
+            byte lo = reader.ReadByte();
+            byte hi = reader.ReadByte();
+            short pcm = (short)((hi << 8) | lo);
+            floatData[i] = pcm / 32768.0f;
+        }
+
+        return floatData;
+    }
+
+    public static float[] ReadMono24kWavToFloat(string filePath)
+    {
+        using FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+        using BinaryReader reader = new BinaryReader(fs);
+
+        string riff = new string(reader.ReadChars(4));
+        int fileSize = reader.ReadInt32();
+        string wave = new string(reader.ReadChars(4));
+        string fmt = new string(reader.ReadChars(4));
+        int fmtSize = reader.ReadInt32();
+
+        short audioFormat = reader.ReadInt16();
+        short numChannels = reader.ReadInt16();
+        int fileSampleRate = reader.ReadInt32();
+        int byteRate = reader.ReadInt32();
+        short blockAlign = reader.ReadInt16();
+        short bitsPerSample = reader.ReadInt16();
+
+        if (riff != "RIFF" || wave != "WAVE" || fmt != "fmt ")
+            throw new Exception("无效的WAV文件头");
+        if (fmtSize > 16)
+            reader.ReadBytes(fmtSize - 16);
+
+        string dataChunkId;
+        do
+        {
+            dataChunkId = new string(reader.ReadChars(4));
+            if (dataChunkId != "data")
+                reader.ReadBytes(reader.ReadInt32());
+        } while (dataChunkId != "data");
+
+        int dataSize = reader.ReadInt32();
+
+        // 修改点1：允许采样率为 24000
+        if (audioFormat != 1) throw new Exception("仅支持PCM格式");
+        if (numChannels != 1) throw new Exception("仅支持单声道音频");
+        if (fileSampleRate != 24000) throw new Exception("仅支持24kHz采样率");
+        if (bitsPerSample != 16) throw new Exception("仅支持16位采样深度");
+
+        int sampleCount = dataSize / 2;
+        float[] floatData = new float[sampleCount];
+        for (int i = 0; i < sampleCount; i++)
+        {
+            byte lo = reader.ReadByte();
+            byte hi = reader.ReadByte();
+            short pcm = (short)((hi << 8) | lo);
+            floatData[i] = pcm / 32768.0f;
+        }
+
+        return floatData;
+    }
 }
