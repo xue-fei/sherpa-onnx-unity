@@ -37,6 +37,12 @@ Unity 2021.3.21f1c1
 	https://gitee.com/awnuxcvbn/UnityLogsViewer     
 	fork from      
 	https://github.com/aliessmael/Unity-Logs-Viewer   
+  
+2026.10.26 Win11 编辑器cuda测试 OK （1070卡 cuda12.8 cudnn-windows-x86_64-9.0.0.312_cuda12-archive）    
+下载sherpa-onnx-v2.0.0-cuda-12.x-cudnn-9.x-onnxruntime1.28.2-win-x64-cuda.tar.bz2   
+替换或添加Plugins\Win下的 onnxruntime.dll、onnxruntime_providers_cuda.dll、  
+onnxruntime_providers_shared.dll、onnxruntime_providers_tensorrt.dll、  
+sherpa-onnx-c-api.dll  
 
 2025.3.13 Unity build Android OK   
 Need copy models files to Android\data\packageName\files\   
